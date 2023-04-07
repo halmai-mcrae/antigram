@@ -17,3 +17,8 @@
   border-radius: 5px;
   text-align: center;
 }
+
+button:hover {
+  transform: scale(1.2);
+  transition: all 0.4s ease-in-out;
+}
