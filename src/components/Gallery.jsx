@@ -13,6 +13,10 @@ const Gallery = () => {
       url: await getPhotoUrl('#addPhotoInput'),
     })
   }
+
+  const removePhoto = (id) => {
+    db.gallery.delete(id)
+  }
   return (
     <>
       <input
@@ -37,6 +41,14 @@ const Gallery = () => {
               alt=""
               className="item-image"
             />
+            <button
+              className="delete-button"
+              onClick={() =>
+                removePhoto(photo.id)
+              }
+            >
+              Delete
+            </button>
           </div>
         ))}
       </section>
