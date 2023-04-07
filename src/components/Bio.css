@@ -109,13 +109,13 @@
 
 .modal {
   background-color: white;
-  padding: 50px;
+  padding: 40px;
   border-radius: 5px;
   text-align: center;
 }
 
 .social-container {
-  margin: 20px 0;
+  margin: 2rem;
 }
 
 .social-container a {

@@ -30,6 +30,7 @@ const Nav = () => {
           <a
             href="mailto:hello@halmaimcrae.co.nz"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="far fa-comment-alt" />
           </a>
@@ -38,6 +39,7 @@ const Nav = () => {
           <a
             href="https://www.google.com/maps/place/Wellington/@-41.2529601,174.7542577,11z/data=!3m1!4b1!4m6!3m5!1s0x6d38b1fc49e974cb:0xa00ef63a213b470!8m2!3d-41.2923814!4d174.7787463!16zL20vMDg1M2c"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="far fa-compass" />
           </a>
@@ -50,10 +52,10 @@ const Nav = () => {
       {showAlert && (
         <div className="alert-modal">
           <div className="alert-content">
-            <h3>
+            <h4>
               Thanks, but your likes mean nothing
               here.
-            </h3>
+            </h4>
             <button onClick={handleAlertClose}>
               Close
             </button>

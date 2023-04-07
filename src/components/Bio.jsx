@@ -59,6 +59,7 @@ const Bio = () => {
               <a
                 href={userDetails.github}
                 target="_blank"
+                rel="noreferrer"
                 class="social"
               >
                 <i class="fab fa-github"></i>
@@ -66,6 +67,7 @@ const Bio = () => {
               <a
                 href={userDetails.strava}
                 target="_blank"
+                rel="noreferrer"
                 class="social"
               >
                 <i class="fab fa-strava"></i>
@@ -73,6 +75,7 @@ const Bio = () => {
               <a
                 href={userDetails.medium}
                 target="_blank"
+                rel="noreferrer"
                 class="social"
               >
                 <i class="fab fa-medium"></i>
@@ -80,6 +83,7 @@ const Bio = () => {
               <a
                 href={userDetails.linkedin}
                 target="_blank"
+                rel="noreferrer"
                 class="social"
               >
                 <i class="fab fa-linkedin-in"></i>
@@ -87,6 +91,7 @@ const Bio = () => {
               <a
                 href={userDetails.website}
                 target="_blank"
+                rel="noreferrer"
                 class="social"
               >
                 <i class="fas fa-heart"></i>
