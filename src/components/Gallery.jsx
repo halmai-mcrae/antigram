@@ -1,8 +1,28 @@
 import getPhotoUrl from 'get-photo-url'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../dexie'
+import { auth, provider } from '../firebase'
+import { useState } from 'react'
+import { signInWithPopup } from 'firebase/auth'
 
 const Gallery = () => {
+  const [user, setUser] = useState(null)
+
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user
+        console.log(user)
+        setUser(user)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const handleLogout = () => {
+    setUser(null)
+  }
   const allPhotos = useLiveQuery(
     () => db.gallery.toArray(),
     []
@@ -19,18 +39,30 @@ const Gallery = () => {
   }
   return (
     <>
-      <input
-        type="file"
-        accept="image/*"
-        name="photo"
-        id="addPhotoInput"
-      />
-      <label
-        htmlFor="addPhotoInput"
-        onClick={addPhoto}
-      >
-        <i className="add-photo-button fas fa-plus-circle" />
-      </label>
+      {auth.currentUser ? (
+        <>
+          <input
+            type="file"
+            accept="image/*"
+            name="photo"
+            id="addPhotoInput"
+          />
+          <label
+            htmlFor="addPhotoInput"
+            onClick={addPhoto}
+          >
+            <i className="add-photo-button fas fa-plus-circle" />
+          </label>
+        </>
+      ) : (
+        <button
+          className="sign-in-button"
+          onClick={handleGoogleSignIn}
+        >
+          <i className="fab fa-google" /> Sign in
+          with Google{' '}
+        </button>
+      )}
 
       <section className="gallery">
         {!allPhotos && <p>Loading...</p>}
@@ -41,14 +73,16 @@ const Gallery = () => {
               alt=""
               className="item-image"
             />
-            <button
-              className="delete-button"
-              onClick={() =>
-                removePhoto(photo.id)
-              }
-            >
-              Delete
-            </button>
+            {user && (
+              <button
+                className="delete-button"
+                onClick={() =>
+                  removePhoto(photo.id)
+                }
+              >
+                Delete
+              </button>
+            )}
           </div>
         ))}
       </section>
