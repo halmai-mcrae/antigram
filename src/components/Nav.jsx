@@ -16,7 +16,7 @@ const Nav = () => {
 
   return (
     <nav>
-      <button class="logo">Antigram</button>
+      <button className="logo">Antigram</button>
       <input
         type="text"
         className="search"
