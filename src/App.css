@@ -104,22 +104,39 @@ nav {
   transition: 0.3s ease-in-out;
   position: fixed;
   bottom: 4em;
-  right: 11em;
+  right: 13em;
   cursor: pointer;
 }
 
 .sign-in-button {
+  z-index: 999;
   position: fixed;
   bottom: 4em;
-  right: 12em;
+  right: 10em;
+  background-color: #fff;
   cursor: pointer;
+  border: none;
+  box-shadow: 0 0 0.5em #dbdbdb;
+  padding: 1em;
 }
 
 .gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 2.5em;
-  column-gap: 2.5em;
+  row-gap: 3em;
+}
+
+.logout {
+  z-index: 999;
+  position: fixed;
+  top: 5em;
+  right: 16em;
+  padding: 1em;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 0.5em #dbdbdb;
 }
 
 .item {

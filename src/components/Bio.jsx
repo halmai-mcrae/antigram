@@ -65,22 +65,6 @@ const Bio = () => {
                 <i class="fab fa-github"></i>
               </a>
               <a
-                href={userDetails.strava}
-                target="_blank"
-                rel="noreferrer"
-                class="social"
-              >
-                <i class="fab fa-strava"></i>
-              </a>
-              <a
-                href={userDetails.medium}
-                target="_blank"
-                rel="noreferrer"
-                class="social"
-              >
-                <i class="fab fa-medium"></i>
-              </a>
-              <a
                 href={userDetails.linkedin}
                 target="_blank"
                 rel="noreferrer"
@@ -95,6 +79,22 @@ const Bio = () => {
                 class="social"
               >
                 <i class="fas fa-heart"></i>
+              </a>
+              <a
+                href={userDetails.strava}
+                target="_blank"
+                rel="noreferrer"
+                class="social"
+              >
+                <i class="fab fa-strava"></i>
+              </a>
+              <a
+                href={userDetails.medium}
+                target="_blank"
+                rel="noreferrer"
+                class="social"
+              >
+                <i class="fab fa-medium"></i>
               </a>
             </div>
 
