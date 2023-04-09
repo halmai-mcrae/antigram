@@ -1,12 +1,21 @@
+import { useEffect, useState } from 'react'
 import getPhotoUrl from 'get-photo-url'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../dexie'
 import { auth, provider } from '../firebase'
-import { useState } from 'react'
 import { signInWithPopup } from 'firebase/auth'
 
 const Gallery = () => {
   const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(
+      (user) => {
+        setUser(user)
+      }
+    )
+    return unsubscribe
+  }, [])
 
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, provider)
@@ -21,8 +30,10 @@ const Gallery = () => {
   }
 
   const handleLogout = () => {
+    auth.signOut()
     setUser(null)
   }
+
   const allPhotos = useLiveQuery(
     () => db.gallery.toArray(),
     []
@@ -39,7 +50,7 @@ const Gallery = () => {
   }
   return (
     <>
-      {auth.currentUser ? (
+      {auth.currentUser && user ? (
         <>
           <input
             type="file"
@@ -53,6 +64,23 @@ const Gallery = () => {
           >
             <i className="add-photo-button fas fa-plus-circle" />
           </label>
+          {auth.currentUser && user ? (
+            <>
+              <div className="logout">
+                <button onClick={handleLogout}>
+                  <i className="fab fa-google" />{' '}
+                  Sign out
+                </button>
+                <h3 className="welcome-content">
+                  Welcome{' '}
+                  {auth.currentUser.displayName}
+                </h3>
+                <p className="welcome-content">
+                  {auth.currentUser.email}
+                </p>
+              </div>
+            </>
+          ) : null}
         </>
       ) : (
         <button
@@ -66,25 +94,28 @@ const Gallery = () => {
 
       <section className="gallery">
         {!allPhotos && <p>Loading...</p>}
-        {allPhotos?.map((photo) => (
-          <div className="item" key={photo.id}>
-            <img
-              src={photo.url}
-              alt=""
-              className="item-image"
-            />
-            {user && (
-              <button
-                className="delete-button"
-                onClick={() =>
-                  removePhoto(photo.id)
-                }
-              >
-                Delete
-              </button>
-            )}
-          </div>
-        ))}
+        {allPhotos
+          ?.slice()
+          .reverse()
+          .map((photo) => (
+            <div className="item" key={photo.id}>
+              <img
+                src={photo.url}
+                alt=""
+                className="item-image"
+              />
+              {user && (
+                <button
+                  className="delete-button"
+                  onClick={() =>
+                    removePhoto(photo.id)
+                  }
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+          ))}
       </section>
     </>
   )
