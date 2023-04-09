@@ -11,40 +11,9 @@ button {
   border-radius: 5px;
 }
 
-nav {
-  position: fixed;
-  display: grid;
-  top: 0;
-  background-color: #fff;
-  height: 3.3em;
-  line-height: 3.3em;
-  width: 100%;
-  border-bottom: 0.1em solid #dbdbdb;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-}
-
-.search {
-  background: #fafafa;
-  height: 2em;
-  margin: 0.8em;
-  width: 15.5em;
-  border: 0.07em solid #dbdbdb;
-  border-radius: 0.2em;
-}
-
-.search::placeholder {
-  text-align: center;
-  color: #808080;
-}
-
-.nav-links {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-.nav-links i {
-  transform: scale(1.5);
-  color: #333;
+button:hover {
+  transform: scale(1.2);
+  transition: all 0.4s ease-in-out;
 }
 
 .container {
@@ -124,13 +93,14 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 3em;
+  column-gap: 1.5em;
 }
 
 .logout {
   z-index: 999;
   position: fixed;
   top: 5em;
-  right: 16em;
+  right: 17em;
   padding: 1em;
   color: #333;
   background-color: #fff;
