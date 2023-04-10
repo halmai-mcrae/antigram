@@ -5,6 +5,8 @@ import { db } from '../dexie'
 import { auth, provider } from '../firebase'
 import { signInWithPopup } from 'firebase/auth'
 
+import './Gallery.css'
+
 const Gallery = () => {
   const [user, setUser] = useState(null)
 
@@ -59,9 +61,11 @@ const Gallery = () => {
             id="addPhotoInput"
           />
           <label
+            className="add-photo-mobile fas fa-plus-circle"
             htmlFor="addPhotoInput"
             onClick={addPhoto}
           >
+            <span> Add photo</span>
             <i className="add-photo-button fas fa-plus-circle" />
           </label>
           {auth.currentUser && user ? (

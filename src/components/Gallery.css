@@ -1,0 +1,254 @@
+.delete-button {
+  opacity: 0;
+  position: absolute;
+  margin-left: 1em;
+  margin-top: 1em;
+  padding: 1rem;
+  color: #333;
+}
+
+.delete-button:hover {
+  background-color: #fafafa;
+}
+.item:hover .delete-button {
+  opacity: 1;
+}
+
+.container {
+  padding: 0;
+}
+
+.profile-info {
+  white-space: nowrap;
+}
+
+.profile-info .about {
+  white-space: nowrap;
+}
+
+#profilePhotoInput {
+  display: none;
+}
+
+.profile-photo {
+  background: #000;
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+  margin-top: 0.5em;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile-photo img:hover {
+  opacity: 0.7;
+}
+
+.profile-info .name {
+  font-size: 1.5em;
+  color: #545454;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.profile-info .about {
+  font-size: 1em;
+  color: #545454;
+  white-space: nowrap;
+}
+
+#addPhotoInput {
+  display: none;
+}
+
+.add-photo-button {
+  transform: scale(2);
+  transition: 0.3s ease-in-out;
+  position: fixed;
+  bottom: 4em;
+  right: 13em;
+  cursor: pointer;
+}
+
+.sign-in-button {
+  z-index: 999;
+  position: fixed;
+  bottom: 4em;
+  right: 10em;
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 0.5em #dbdbdb;
+  padding: 1em;
+}
+
+.logout {
+  z-index: 999;
+  position: fixed;
+  top: 5em;
+  right: 17em;
+  padding: 1em;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 0.5em #dbdbdb;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15em;
+  width: 15em;
+  cursor: pointer;
+}
+
+.item-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.item:hover .item-image {
+  opacity: 0.7;
+}
+
+.item:hover {
+  opacity: 1;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(16em, 1fr)
+  );
+  row-gap: 2em;
+
+  margin-bottom: 2em;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 400px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1.5em;
+    column-gap: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .item {
+    height: 7.5em;
+    width: 7.5em;
+    background: #fafafa;
+    cursor: pointer;
+  }
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 0.8em;
+  }
+
+  .logout {
+    top: 2em;
+    right: 1em;
+    padding: 0.5em;
+    font-size: 0.8em;
+  }
+
+  .sign-in-button {
+    bottom: 4em;
+    right: 3em;
+    padding: 0.8em;
+    font-size: 0.8em;
+  }
+
+  .add-photo-mobile {
+    position: relative;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    border: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile-photo {
+    width: 5em;
+    height: 5em;
+    margin-top: 2em;
+    margin-right: 2em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1.5em;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .container {
+    padding: 0;
+  }
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1.5em;
+  }
+  .add-photo-button:before {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 860px) {
+  .container {
+    padding: 1rem 10%;
+  }
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    padding: 0 10%;
+  }
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 2em;
+  }
+
+  .item {
+    height: 20em;
+    width: 20em;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .container {
+    padding: 0 15%;
+  }
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 2em;
+  }
+
+  .item {
+    height: 25em;
+    width: 25em;
+  }
+
+  .add-photo-mobile ::before span {
+    display: none;
+  }
+}
