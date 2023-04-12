@@ -1,13 +1,3 @@
-.bio {
-  display: grid;
-  grid-template-columns: 2fr 2fr 2fr;
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 2em;
-  border-bottom: 0.2px solid #dbdbdb;
-  margin-top: 0.5em;
-  margin-bottom: 2em;
-}
-
 @-webkit-keyframes follow-animation {
   from {
     background: white;
@@ -39,7 +29,6 @@
   }
 }
 
-/* Standard syntax */
 @keyframes follow-animation {
   from {
     background: white;
@@ -148,4 +137,48 @@ a {
 a:hover {
   transform: scale(1.2);
   transition: all 0.4s ease-in-out;
+}
+
+.bio {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 3em 0 2em 5em;
+  border-bottom: 0.2px solid #dbdbdb;
+
+  margin-bottom: 2.5em;
+}
+
+.profile-photo {
+  background: #000;
+  width: 8.5em;
+  height: 8.5em;
+  border-radius: 50%;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile-photo img:hover {
+  opacity: 0.7;
+}
+
+.profile-info .name {
+  font-size: 1.7em;
+  color: #545454;
+  margin-bottom: 0;
+}
+
+.profile-info .about {
+  font-size: 1.2em;
+  color: #545454;
+}
+
+#addPhotoInput {
+  display: none;
 }
