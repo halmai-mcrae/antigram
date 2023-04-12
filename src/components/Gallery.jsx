@@ -61,12 +61,13 @@ const Gallery = () => {
             id="addPhotoInput"
           />
           <label
-            className="add-photo-mobile fas fa-plus-circle"
             htmlFor="addPhotoInput"
             onClick={addPhoto}
           >
-            <span> Add photo</span>
-            <i className="add-photo-button fas fa-plus-circle" />
+            <button className="add-photo-button">
+              <i className="fas fa-plus-circle" />{' '}
+              Add Post
+            </button>
           </label>
           {auth.currentUser && user ? (
             <>
@@ -92,7 +93,7 @@ const Gallery = () => {
           onClick={handleGoogleSignIn}
         >
           <i className="fab fa-google" /> Sign in
-          with Google{' '}
+          with Google
         </button>
       )}
 
