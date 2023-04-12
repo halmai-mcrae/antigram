@@ -29,6 +29,15 @@ button {
   .search {
     display: none;
   }
+
+  .social-container {
+    margin: 1em;
+  }
+
+  .sign-in-button {
+    bottom: 5em;
+    right: 3em;
+  }
 }
 
 /* Styles for screens larger than 1400px */
