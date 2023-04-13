@@ -61,13 +61,12 @@ const Gallery = () => {
             id="addPhotoInput"
           />
           <label
+            className="add-photo-button"
             htmlFor="addPhotoInput"
             onClick={addPhoto}
           >
-            <button className="add-photo-button">
-              <i className="fas fa-plus-circle" />{' '}
-              Add Post
-            </button>
+            <i className="fas fa-plus-circle" />{' '}
+            Add Post
           </label>
           {auth.currentUser && user ? (
             <>
