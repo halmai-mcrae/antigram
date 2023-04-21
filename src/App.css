@@ -49,7 +49,7 @@ button {
 }
 
 /* Styles for screens between 992px and 1200px */
-@media screen and (min-width: 992px) and (max-width: 1199px) {
+@media screen and (min-width: 861px) and (max-width: 1199px) {
   .container {
     padding: 0 7.5%;
   }
@@ -60,13 +60,13 @@ button {
 }
 
 /* Styles for screens between 768px and 991px */
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 768px) and (max-width: 860px) {
   .container {
     padding: 0;
   }
   .item {
-    height: 16em;
-    width: 16em;
+    height: 15.5em;
+    width: 15.5em;
   }
 }
 
@@ -87,8 +87,8 @@ button {
     padding: 0;
   }
   .item {
-    height: 7em;
-    width: 7em;
+    height: 7.5em;
+    width: 7.5em;
   }
 
   .bio {

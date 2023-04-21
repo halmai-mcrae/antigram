@@ -75,5 +75,6 @@ nav {
 @media (max-width: 767px) {
   .alert-content {
     padding: 20px;
+    font-size: 13px;
   }
 }
