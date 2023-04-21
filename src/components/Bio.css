@@ -137,6 +137,7 @@ a {
 a:hover {
   transform: scale(1.2);
   transition: all 0.4s ease-in-out;
+  color: #333;
 }
 
 .bio {
