@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react'
-import getPhotoUrl from 'get-photo-url'
-import { useLiveQuery } from 'dexie-react-hooks'
-import { db } from '../dexie'
-import { auth, provider } from '../firebase'
+import {
+  auth,
+  provider,
+  storage,
+} from '../firebase'
 import { signInWithPopup } from 'firebase/auth'
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  list,
+} from 'firebase/storage'
 
 import './Gallery.css'
 
 const Gallery = () => {
   const [user, setUser] = useState(null)
+  const [imageUpload, setImageUpload] =
+    useState(null)
+  const [imageUrls, setImageUrls] = useState([])
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(
@@ -19,11 +29,52 @@ const Gallery = () => {
     return unsubscribe
   }, [])
 
+  const imagesRef = ref(storage, 'images/')
+
+  const uploadFile = () => {
+    if (imageUpload == null) return
+    const fileName = `${Date.now()}_${
+      imageUpload.name
+    }`
+    const imageRef = ref(
+      storage,
+      `images/${fileName}`
+    )
+    uploadBytes(imageRef, imageUpload).then(
+      (snapshot) => {
+        getDownloadURL(snapshot.ref).then(
+          (url) => {
+            setImageUrls((prev) => [url, ...prev])
+          }
+        )
+      }
+    )
+  }
+
+  useEffect(() => {
+    list(imagesRef).then((response) => {
+      const items = response.items
+      // Sort items based on file name (timestamp or sequential number)
+      items.sort((a, b) => {
+        const nameA = a.name
+        const nameB = b.name
+        return nameB.localeCompare(nameA)
+      })
+      // Retrieve download URL for each item in the sorted order
+      Promise.all(
+        items.map((item) => {
+          return getDownloadURL(item)
+        })
+      ).then((urls) => {
+        setImageUrls(urls)
+      })
+    })
+  }, [imagesRef])
+
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user
-        console.log(user)
         setUser(user)
       })
       .catch((err) => {
@@ -36,20 +87,6 @@ const Gallery = () => {
     setUser(null)
   }
 
-  const allPhotos = useLiveQuery(
-    () => db.gallery.toArray(),
-    []
-  )
-
-  const addPhoto = async () => {
-    db.gallery.add({
-      url: await getPhotoUrl('#addPhotoInput'),
-    })
-  }
-
-  const removePhoto = (id) => {
-    db.gallery.delete(id)
-  }
   return (
     <>
       {auth.currentUser && user ? (
@@ -57,34 +94,32 @@ const Gallery = () => {
           <input
             type="file"
             accept="image/*"
-            name="photo"
             id="addPhotoInput"
+            onChange={(e) =>
+              setImageUpload(e.target.files[0])
+            }
           />
           <label
             className="add-photo-button"
             htmlFor="addPhotoInput"
-            onClick={addPhoto}
+            onClick={uploadFile}
           >
             <i className="fas fa-plus-circle" />{' '}
             Add Post
           </label>
-          {auth.currentUser && user ? (
-            <>
-              <div className="logout">
-                <button onClick={handleLogout}>
-                  <i className="fab fa-google" />{' '}
-                  Sign out
-                </button>
-                <h3 className="welcome-content">
-                  Welcome{' '}
-                  {auth.currentUser.displayName}
-                </h3>
-                <p className="welcome-content">
-                  {auth.currentUser.email}
-                </p>
-              </div>
-            </>
-          ) : null}
+          <div className="logout">
+            <button onClick={handleLogout}>
+              <i className="fab fa-google" /> Sign
+              out
+            </button>
+            <h3 className="welcome-content">
+              Welcome{' '}
+              {auth.currentUser.displayName}
+            </h3>
+            <p className="welcome-content">
+              {auth.currentUser.email}
+            </p>
+          </div>
         </>
       ) : (
         <button
@@ -97,29 +132,21 @@ const Gallery = () => {
       )}
 
       <section className="gallery">
-        {!allPhotos && <p>Loading...</p>}
-        {allPhotos
-          ?.slice()
-          .reverse()
-          .map((photo) => (
-            <div className="item" key={photo.id}>
-              <img
-                src={photo.url}
-                alt=""
-                className="item-image"
-              />
-              {user && (
-                <button
-                  className="delete-button"
-                  onClick={() =>
-                    removePhoto(photo.id)
-                  }
-                >
-                  Delete
-                </button>
-              )}
-            </div>
-          ))}
+        {!imageUrls && <p>Loading...</p>}
+        {imageUrls.map((url) => (
+          <div className="item" key={url}>
+            <img
+              src={url}
+              alt=""
+              className="item-image"
+            />
+            {user && (
+              <button className="delete-button">
+                Delete
+              </button>
+            )}
+          </div>
+        ))}
       </section>
     </>
   )
