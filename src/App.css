@@ -1,5 +1,6 @@
 body {
   background-color: #fafafa;
+  margin: auto 0;
 }
 
 button {
@@ -9,6 +10,13 @@ button {
   background: unset;
   transition: all 0.2s ease-in-out;
   border-radius: 5px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -43,8 +51,8 @@ button {
 /* Styles for screens larger than 1400px */
 @media screen and (min-width: 1400px) {
   .item {
-    height: 23em;
-    width: 23em;
+    height: 25em;
+    width: 25em;
   }
 }
 
@@ -60,24 +68,24 @@ button {
 }
 
 /* Styles for screens between 768px and 991px */
-@media screen and (min-width: 768px) and (max-width: 860px) {
+@media screen and (min-width: 600px) and (max-width: 860px) {
   .container {
     padding: 0;
   }
-  .item {
-    height: 15.5em;
-    width: 15.5em;
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 /* Styles for screens smaller than 768px */
-@media screen and (min-width: 481px) and (max-width: 767px) {
+@media screen and (min-width: 481px) and (max-width: 599px) {
   .container {
     padding: 0;
   }
-  .item {
-    height: 12em;
-    width: 12em;
+
+  .gallery {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -86,13 +94,12 @@ button {
   .container {
     padding: 0;
   }
-  .item {
-    height: 7.5em;
-    width: 7.5em;
-  }
-
   .bio {
     padding: 1em;
     white-space: nowrap;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
   }
 }
