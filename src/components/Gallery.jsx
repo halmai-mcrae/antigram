@@ -130,24 +130,25 @@ const Gallery = () => {
           with Google
         </button>
       )}
-
-      <section className="gallery">
-        {!imageUrls && <p>Loading...</p>}
-        {imageUrls.map((url) => (
-          <div className="item" key={url}>
-            <img
-              src={url}
-              alt=""
-              className="item-image"
-            />
-            {user && (
-              <button className="delete-button">
-                Delete
-              </button>
-            )}
-          </div>
-        ))}
-      </section>
+      <div className="gallery-container">
+        <section className="gallery">
+          {!imageUrls && <p>Loading...</p>}
+          {imageUrls.map((url) => (
+            <div className="item" key={url}>
+              <img
+                src={url}
+                alt=""
+                className="item-image"
+              />
+              {user && (
+                <button className="delete-button">
+                  Delete
+                </button>
+              )}
+            </div>
+          ))}
+        </section>
+      </div>
     </>
   )
 }
