@@ -145,7 +145,6 @@ a:hover {
   grid-template-columns: 1fr 2fr;
   padding: 3em 0 2em 5em;
   border-bottom: 0.2px solid #dbdbdb;
-
   margin-bottom: 2.5em;
 }
 
@@ -177,8 +176,4 @@ a:hover {
 .profile-info .about {
   font-size: 1.2em;
   color: #545454;
-}
-
-#addPhotoInput {
-  display: none;
 }
