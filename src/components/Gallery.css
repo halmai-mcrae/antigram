@@ -22,11 +22,11 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transition: transform 0.2s ease-in-out; /* Smooth zoom on hover */
+  transition: transform 0.3s ease-in-out; /* Smooth zoom on hover */
 }
 
 .item:hover .item-image {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .delete-button {
@@ -54,8 +54,8 @@
 .sign-in-button {
   z-index: 999;
   position: fixed;
-  bottom: 4em;
-  right: 10em;
+  bottom: 10%;
+  right: 10%;
   background-color: #fff;
   cursor: pointer;
   border: none;
@@ -67,8 +67,8 @@
 .logout {
   z-index: 999;
   position: fixed;
-  top: 4em;
-  right: 7em;
+  top: 10%;
+  right: 10%;
   padding: 1em;
   color: #333;
   background-color: #fff;
@@ -86,16 +86,12 @@
 .add-photo-button {
   z-index: 999;
   position: fixed;
-  bottom: 4em;
-  right: 10em;
+  bottom: 10%;
+  right: 10%;
   background-color: #fff;
   cursor: pointer;
   border: none;
   border-radius: 5%;
   box-shadow: 0 0 0.5em #dbdbdb;
-  padding: 1em;
-}
-
-.add-photo-button i {
-  transform: scale(1.2);
+  padding: 0.5em;
 }
