@@ -6,7 +6,7 @@ import './Bio.css'
 const Bio = () => {
   const userDetails = {
     name: 'Halmai McRae',
-    about: 'The things I like.',
+    about: 'Things I like.',
     linkedin:
       'https://www.linkedin.com/in/halmai-mcrae/',
     github: 'https://github.com/halmai-mcrae',
